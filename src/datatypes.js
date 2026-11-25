@@ -19,16 +19,96 @@ export const words = (s) => s.trim().split(/\s+/).join(" ");
 // with one ("5.0"), as Provbana does.
 const DECIMALS = new WeakMap();
 
+function noteDecimal(holder, key) {
+  let keys = DECIMALS.get(holder);
+  if (!keys) DECIMALS.set(holder, (keys = new Set()));
+  keys.add(key);
+}
+
+// Whether JSON.parse hands a reviver the text each number was written as
+// (Chrome 114, Firefox 135, Safari 18.4, Node 21). Asked once.
+let sourceAccess = null;
+function hasSourceAccess() {
+  if (sourceAccess === null) {
+    sourceAccess = false;
+    JSON.parse("1.0", (key, value, context) => {
+      sourceAccess = Boolean(context) && context.source === "1.0";
+      return value;
+    });
+  }
+  return sourceAccess;
+}
+
 export function parseJson(source) {
+  if (!hasSourceAccess()) {
+    JSON.parse(source);  // says what is wrong with text that is not JSON
+    return parseJsonPortable(source);
+  }
   return JSON.parse(source, function (key, value, context) {
-    if (typeof value === "number" && Number.isInteger(value) && context
-        && typeof context.source === "string" && /[.eE]/.test(context.source)) {
-      let keys = DECIMALS.get(this);
-      if (!keys) DECIMALS.set(this, (keys = new Set()));
-      keys.add(key);
+    if (typeof value === "number" && Number.isInteger(value) && /[.eE]/.test(context.source)) {
+      noteDecimal(this, key);
     }
     return value;
   });
+}
+
+/* The same result for engines without that: a second read of text that is
+   already known to be valid JSON, so it only has to find the values. */
+export function parseJsonPortable(source) {
+  const src = String(source);
+  let i = 0;
+  const space = () => { while (src.charCodeAt(i) <= 32) i++; };
+  const string = () => {
+    const start = i++;
+    while (src[i] !== '"') i += src[i] === "\\" ? 2 : 1;
+    return JSON.parse(src.slice(start, ++i));
+  };
+  const literal = /[^,\]}\s]+/y;
+  const value = (holder, key) => {
+    space();
+    const c = src[i];
+    if (c === "{") {
+      const object = {};
+      i++; space();
+      if (src[i] === "}") { i++; return object; }
+      for (;;) {
+        space();
+        const name = string();
+        space();
+        i++;  // the colon
+        // a repeated name: the last one wins, and so does its precision
+        const keys = DECIMALS.get(object);
+        if (keys) keys.delete(name);
+        const member = value(object, name);
+        // defined, not assigned: "__proto__" is a name like any other
+        Object.defineProperty(object, name,
+          { value: member, writable: true, enumerable: true, configurable: true });
+        space();
+        if (src[i++] === "}") return object;
+      }
+    }
+    if (c === "[") {
+      const array = [];
+      i++; space();
+      if (src[i] === "]") { i++; return array; }
+      for (;;) {
+        array.push(value(array, String(array.length)));
+        space();
+        if (src[i++] === "]") return array;
+      }
+    }
+    if (c === '"') return string();
+    literal.lastIndex = i;
+    const token = literal.exec(src)[0];
+    i += token.length;
+    if (token === "true") return true;
+    if (token === "false") return false;
+    if (token === "null") return null;
+    const number = Number(token);
+    if (holder && Number.isInteger(number) && /[.eE]/.test(token)) noteDecimal(holder, key);
+    return number;
+  };
+  return value(null, "");
 }
 
 function decimalText(value) {

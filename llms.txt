@@ -8,7 +8,7 @@ Use this when someone asks for a FHIR document viewer, an IPS viewer or renderer
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js"></script>
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js"></script>
 
 <fhir-document-viewer src="patient-summary.json" view="dashboard"></fhir-document-viewer>
 ```

@@ -17,7 +17,7 @@ One script tag, no build step, no dependencies:
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js"></script>
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js"></script>
 
 <fhir-document-viewer src="patient-summary.json" view="dashboard"></fhir-document-viewer>
 ```
@@ -145,7 +145,7 @@ Colours: `--fdv-bg`, `--fdv-card`, `--fdv-text`, `--fdv-muted`, `--fdv-border`,
 
 ```js
 import { read, renderHtml, renderStatic, summarize, detectDocumentType, parseJson, css }
-  from "https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js";
+  from "https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js";
 
 const doc = read(jsonText);            // { docType, summary } - throws TypeError if not a Bundle
 doc.summary.attention;                 // what is missing or possibly outdated
@@ -161,9 +161,8 @@ same module can pre-render on a server. Everything from the document is HTML-esc
 before it is placed in the page.
 
 Give it the JSON **text** when you can: FHIR decimals carry their precision ("5.0" is not
-"5"), and only the text still has it. `parseJson` keeps it on engines that expose the
-source to `JSON.parse` revivers (Chrome 114+, Firefox 135+, Safari 18.4+, Node 21+);
-elsewhere, and for already parsed objects, "5.0" is shown as "5".
+"5"), and only the text still has it. `parseJson` keeps it on every engine; a Bundle that
+was already parsed with `JSON.parse` shows "5.0" as "5".
 
 ## Limits
 

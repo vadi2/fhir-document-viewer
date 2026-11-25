@@ -1,6 +1,6 @@
 {
   "name": "fhir-document-viewer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Web component that renders a FHIR document Bundle (IPS, European Patient Summary, EHDS lab report, prescription, imaging report, discharge report) as a clinician-readable dashboard and timeline. No dependencies, no build step.",
   "keywords": [
     "fhir",

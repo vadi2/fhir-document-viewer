@@ -194,3 +194,31 @@ test("a decimal keeps the precision it was written with, given the text", () => 
   assert.match(shown(JSON.parse(bundle("5.0"))), /^5 mmol\/L/);
   assert.match(shown(parseJson(bundle("5.0"))), /^5\.0 mmol\/L/);
 });
+
+test("the portable parser reads what JSON.parse reads, decimals included", async () => {
+  const { parseJsonPortable } = await import("../src/datatypes.js");
+  const { readdirSync } = await import("node:fs");
+  const odd = '{"a":[1.0,-0.0,1e2,2.50,3,{"b":4.00,"b":4,"c":5,"c":5.0}],"\\u00e5 \\"q\\"\\\\":[],'
+    + '"__proto__":{"x":1.0},"s":"}]\\\\\\"","t":true,"f":false,"n":null,"e":{}, "w" : [ ] }';
+  assert.deepStrictEqual(parseJsonPortable(odd), JSON.parse(odd));
+  assert.ok(Object.hasOwn(parseJsonPortable(odd), "__proto__"));
+  for (const top of ["7", "7.0", '"x"', "null", " [1.0] "]) {
+    assert.deepStrictEqual(parseJsonPortable(top), JSON.parse(top));
+  }
+  const files = SAMPLES.map((id) => `../samples/${id}.json`).concat(
+    readdirSync(new URL("fixtures", import.meta.url)).filter((f) => f.endsWith(".json"))
+      .map((f) => `fixtures/${f}`));
+  for (const file of files) {
+    const source = readFileSync(new URL(file, import.meta.url), "utf8");
+    const portable = parseJsonPortable(source);
+    assert.deepStrictEqual(portable, JSON.parse(source), file);
+    // and the same view of it, so the same decimals were noted
+    assert.equal(renderHtml(portable, { view: "document" }), renderHtml(source, { view: "document" }), file);
+  }
+  const shown = (bundle) => read(bundle).summary.sections[0].items[0].detail;
+  const potassium = (value) => parseJsonPortable(`{"resourceType":"Bundle","entry":[{"resource":
+    {"resourceType":"Observation","status":"final","code":{"text":"Potassium"},
+     "valueQuantity":{"value":${value},"unit":"mmol/L"}}}]}`);
+  assert.match(shown(potassium("5.0")), /^5\.0 mmol\/L/);
+  assert.match(shown(potassium("5")), /^5 mmol\/L/);
+});
