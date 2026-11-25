@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "author": "Vadim Peretokin",
-  "homepage": "https://vadi2.github.io/fhir-document-viewer/",
+  "homepage": "https://vadimperetok.in/fhir-document-viewer/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vadi2/fhir-document-viewer.git"

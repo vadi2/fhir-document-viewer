@@ -6,7 +6,7 @@ way a clinician would read it: critical alerts and their care plans first, then 
 missing or possibly outdated, then a dashboard, a timeline or the document section by
 section.
 
-**[Live demo](https://vadi2.github.io/fhir-document-viewer/)** - three synthetic
+**[Live demo](https://vadimperetok.in/fhir-document-viewer/)** - three synthetic
 patients, or paste your own Bundle (it stays in your browser).
 
 ![The dashboard view of a synthetic patient summary](docs/dashboard.png)

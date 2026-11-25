@@ -48,7 +48,7 @@ Not on the npm registry. Install from GitHub with `npm install github:vadi2/fhir
 ## Links
 
 - [Repository and README](https://github.com/vadi2/fhir-document-viewer): full reference
-- [Live demo](https://vadi2.github.io/fhir-document-viewer/): three synthetic patients, or paste your own Bundle
+- [Live demo](https://vadimperetok.in/fhir-document-viewer/): three synthetic patients, or paste your own Bundle
 - [Minimal example page](https://github.com/vadi2/fhir-document-viewer/blob/main/examples/minimal.html)
 - [Example Bundles](https://github.com/vadi2/fhir-document-viewer/tree/main/samples): synthetic patient summaries
 - [Provbana](https://github.com/vadi2/Provbana): the hackathon platform this view was written for
