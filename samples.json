@@ -1,0 +1,35 @@
+{
+  "disclaimer": "Synthetic example, generated for the event's scenarios - it does not come from any real system, record or person, and only illustrates how such a summary could look.",
+  "samples": [
+    {
+      "id": "andrea-cross-border",
+      "name": "Andrea Lindqvist, 24",
+      "tagline": "Type 1 diabetes, seen in a Paris emergency department",
+      "language": "English",
+      "scenario": "A Swedish exchange student is brought into a Paris emergency department with runaway blood sugar. Her summary is complete and well coded, but the data behind it has gone stale: the last labs are eight months old and the follow-up that would have refreshed them was cancelled and never rebooked.",
+      "horizon": "Future scenario: under the EHDS Regulation, cross-border exchange of patient summaries is required from around 2029.",
+      "scenarioName": "The Andrea Scenario",
+      "scenarioUrl": "https://drive.google.com/file/d/1hzOACA3chu7E6aknBFni-hZWDJwvVGHx/view"
+    },
+    {
+      "id": "arne-complex-care",
+      "name": "Arne Bergström, 83",
+      "tagline": "Multimorbid, admitted after a fall in Copenhagen",
+      "language": "Swedish",
+      "scenario": "A Swedish pensioner falls while visiting his son in Denmark and needs surgery. Ten conditions, ten medicines including the anticoagulant apixaban, and a high-criticality penicillin allergy with anaphylaxis have to survive the border.",
+      "horizon": "Future scenario: under the EHDS Regulation, cross-border exchange of patient summaries is required from around 2029, and of lab results and discharge reports only from around 2031.",
+      "scenarioName": "The Arne Scenario",
+      "scenarioUrl": "https://drive.google.com/file/d/11dMseBg1439zSf2v8sRnWHSjrE18ZgLJ/view"
+    },
+    {
+      "id": "ville-difficult-airway",
+      "name": "Vilhelm \"Ville\" Söderberg, 13",
+      "tagline": "Difficult airway and immunosuppressed, in a Gothenburg emergency department",
+      "language": "Swedish",
+      "scenario": "A Stockholm boy with a rare craniofacial syndrome, a known difficult airway and juvenile spondyloarthritis on adalimumab and methotrexate arrives at Sahlgrenska with a chest infection and worsening breathing. The team that has never met him needs the airway plan, the last anaesthetic, the last doses and who to ring at Karolinska - before anyone reaches for a laryngoscope.",
+      "horizon": null,
+      "scenarioName": "The Ville Scenario",
+      "scenarioUrl": "https://drive.google.com/file/d/1_PzonjLJ-BjW1sQYdL6YY1dS04T8Kkpp/view"
+    }
+  ]
+}

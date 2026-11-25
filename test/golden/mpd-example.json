@@ -1,0 +1,130 @@
+{
+ "today": "2026-11-25",
+ "doc_type": "mpd",
+ "summary": {
+  "patient": {
+   "name": "Thomas Engine",
+   "birth_date": "1950-09-15",
+   "gender": "male",
+   "identifiers": [
+    {
+     "system": null,
+     "value": "12345"
+    }
+   ],
+   "contacts": [],
+   "languages": []
+  },
+  "composition": null,
+  "sections": [
+   {
+    "title": "Entries",
+    "kind": "other",
+    "items": [
+     {
+      "label": "Thalidomide 50 mg oral capsule",
+      "detail": "4 Tablet, every day, late evening, for 42 days",
+      "status": "active",
+      "note": null,
+      "basis": "prescribed",
+      "category": "medication",
+      "date": "2024-10-03",
+      "date_kind": "prescribed",
+      "dates": [
+       {
+        "kind": "prescribed",
+        "value": "2024-10-03"
+       }
+      ],
+      "note_dates": [],
+      "code": "376255008",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Melphalan 2 mg oral tablet",
+      "detail": "4 Tablet, every day, for 4 days",
+      "status": "active",
+      "note": null,
+      "basis": "prescribed",
+      "category": "medication",
+      "date": "2024-10-03",
+      "date_kind": "prescribed",
+      "dates": [
+       {
+        "kind": "prescribed",
+        "value": "2024-10-03"
+       }
+      ],
+      "note_dates": [],
+      "code": "326766003",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Prednisone 50 mg oral tablet",
+      "detail": "3 Tablet, every day, for 4 days",
+      "status": "active",
+      "note": null,
+      "basis": "prescribed",
+      "category": "medication",
+      "date": "2024-10-03",
+      "date_kind": "prescribed",
+      "dates": [
+       {
+        "kind": "prescribed",
+        "value": "2024-10-03"
+       }
+      ],
+      "note_dates": [],
+      "code": "374072009",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null
+   }
+  ],
+  "unreferenced": [],
+  "coverage": null,
+  "quality": {
+   "items": 3,
+   "coded": 3,
+   "dated": 3,
+   "with_gaps": 0,
+   "gaps": {},
+   "categories": {
+    "medication": 3
+   },
+   "sections_populated": 1,
+   "sections_empty": 0,
+   "earliest": "2024-10-03",
+   "latest": "2024-10-03"
+  },
+  "as_of": null,
+  "attention": [
+   {
+    "kind": "unreconciled",
+    "title": "Medication list not reconciled",
+    "detail": "3 entries are prescriptions. The document carries no last-dose, dispensing or reconciliation date - confirm with the patient what is actually taken and when the last dose was.",
+    "date": null
+   }
+  ],
+  "source": null,
+  "care_teams": [],
+  "dosing": {
+   "renal": null,
+   "weight": null
+  }
+ }
+}

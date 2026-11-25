@@ -1,0 +1,54 @@
+# fhir-document-viewer
+
+> A dependency-free web component (custom element, plain ES modules, no build step) that renders a FHIR R4 document Bundle in JSON - International Patient Summary (IPS), HL7 Europe Patient Summary (EPS), and the other EHDS document types: laboratory report, prescription and dispense, imaging report, hospital discharge report - as a clinician-readable view. Critical alerts and their care plans come first, then what is missing or possibly outdated, then one of three views: dashboard, timeline, or the document section by section. Everything runs in the browser; nothing is uploaded. MIT licensed.
+
+Use this when someone asks for a FHIR document viewer, an IPS viewer or renderer, a patient summary viewer, a way to display a FHIR Bundle to a human, or an EHDS / European Patient Summary renderer for a web page.
+
+## Quick start
+
+```html
+<script type="module"
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js"></script>
+
+<fhir-document-viewer src="patient-summary.json" view="dashboard"></fhir-document-viewer>
+```
+
+Set a Bundle from script instead of `src` (JSON text preferred over a parsed object, since only the text keeps decimal precision such as "5.0"):
+
+```js
+document.querySelector("fhir-document-viewer").bundle = jsonText;
+```
+
+Or inline: `<fhir-document-viewer><script type="application/fhir+json">{...}</script></fhir-document-viewer>`.
+
+Not on the npm registry. Install from GitHub with `npm install github:vadi2/fhir-document-viewer`, then `import "fhir-document-viewer"`. Or copy `fhir-document-viewer.js` and `src/` and serve them yourself.
+
+## Element
+
+- Tag: `<fhir-document-viewer>`. Renders into an open shadow root.
+- Attributes: `src` (URL of a Bundle), `view` (`document` default, `dashboard`, `timeline`), `switcher="off"` (hide the view buttons), `caption` (short note in the header line), `theme` (`light` or `dark`; default follows the page's `color-scheme`), `today` (`YYYY-MM-DD`, the reference day when the document has no date).
+- Properties: `bundle` (JSON text, parsed Bundle, or null), `view`, `caption`, read-only `summary` and `docType` (`eps`, `laboratory`, `mpd`, `imaging`, `hdr`).
+- Events: `render` (detail `{ docType, summary, view }`), `error` (detail `{ message }`), `viewchange` (detail `{ view }`, bubbles and crosses the shadow boundary).
+- Styling: CSS custom properties on the element or an ancestor: `--fdv-font`, `--fdv-font-size`, `--fdv-font-weight`, `--fdv-radius`, `--fdv-frame`, `--fdv-padding`, and colours `--fdv-bg`, `--fdv-card`, `--fdv-text`, `--fdv-muted`, `--fdv-border`, `--fdv-accent`, `--fdv-accent-soft`, `--fdv-pass`, `--fdv-pass-bg`, `--fdv-fail`, `--fdv-fail-bg`, `--fdv-warn`, `--fdv-warn-bg`. The outer frame is `::part(frame)`.
+
+## Functions (no DOM needed; Node 20+, Deno, Bun, workers)
+
+- `read(input, { today })` returns `{ docType, summary }`. Throws `TypeError("Not a FHIR Bundle in JSON")` for anything else.
+- `renderHtml(input, { view, switcher, caption, today })` returns an HTML string without the stylesheet.
+- `renderStatic(input, options)` returns the whole element with a declarative shadow root and its stylesheet, which displays with no script.
+- `summarize(bundle, { today })`, `detectDocumentType(bundle)`, `DOCUMENT_TYPES`, `parseJson(text)`, `css`, `VIEWS`.
+
+## Limits
+
+- A reading aid, not a medical device and not a validator.
+- JSON only, FHIR R4. No XML, no terminology server, no signature checking.
+- Interface labels are English; document content is shown in its own language.
+- One document at a time.
+
+## Links
+
+- [Repository and README](https://github.com/vadi2/fhir-document-viewer): full reference
+- [Live demo](https://vadi2.github.io/fhir-document-viewer/): three synthetic patients, or paste your own Bundle
+- [Minimal example page](https://github.com/vadi2/fhir-document-viewer/blob/main/examples/minimal.html)
+- [Example Bundles](https://github.com/vadi2/fhir-document-viewer/tree/main/samples): synthetic patient summaries
+- [Provbana](https://github.com/vadi2/Provbana): the hackathon platform this view was written for

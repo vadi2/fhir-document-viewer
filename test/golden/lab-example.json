@@ -1,0 +1,143 @@
+{
+ "today": "2026-11-25",
+ "doc_type": "laboratory",
+ "summary": {
+  "patient": {
+   "name": "František Očkovaný",
+   "birth_date": "2000-03-21",
+   "gender": "male",
+   "identifiers": [
+    {
+     "system": "https://ncez.mzcr.cz/standards/fhir/sid/rcis",
+     "value": "740512852"
+    },
+    {
+     "system": "https://ncez.mzcr.cz/standards/fhir/sid/rid",
+     "value": "456789123"
+    },
+    {
+     "system": "urn:oid:2.16.840.1.113883.4.330.203",
+     "value": "5484136"
+    }
+   ],
+   "contacts": [
+    {
+     "name": "Biologická Matka Mrakomorová",
+     "relationship": "MTH",
+     "phone": "+420 604 123 456",
+     "place": null
+    },
+    {
+     "name": "Alena Dlouhá",
+     "relationship": "FRND",
+     "phone": "+420 601 111 111",
+     "place": "Trenčín, SK"
+    }
+   ],
+   "languages": [
+    "cs"
+   ]
+  },
+  "composition": {
+   "title": "Laboratorní zpráva",
+   "date": "2022-03-30T11:24:26+01:00",
+   "language": "cs-CZ"
+  },
+  "sections": [
+   {
+    "title": "Laboratory examinations",
+    "kind": "result",
+    "items": [
+     {
+      "label": "Urea (U) [Moles/Vol]",
+      "detail": "310 mmol/L; 2023-03-27T11:24:26+01:00",
+      "status": "final",
+      "note": null,
+      "direction": "low",
+      "range": "67-580 mmol/L",
+      "performer": "Jan Laborant",
+      "short": "Urea (U)",
+      "category": "result",
+      "date": "2023-03-27T11:24:26+01:00",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2023-03-27T11:24:26+01:00"
+       }
+      ],
+      "note_dates": [],
+      "code": "22700-9",
+      "code_system": "LOINC",
+      "flags": [
+       "abnormal"
+      ],
+      "gaps": [],
+      "subsection": "Urine examinations"
+     },
+     {
+      "label": "Sodium (Bld) [Moles/Vol]",
+      "detail": "156 µmol/L; 2023-03-27T11:24:26+01:00",
+      "status": "final",
+      "note": null,
+      "direction": "critically high",
+      "range": "136-144 µmol/L",
+      "performer": "Laboratorní Technik",
+      "short": "Sodium (Bld)",
+      "category": "result",
+      "date": "2023-03-27T11:24:26+01:00",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2023-03-27T11:24:26+01:00"
+       }
+      ],
+      "note_dates": [],
+      "code": "2947-0",
+      "code_system": "LOINC",
+      "flags": [
+       "abnormal"
+      ],
+      "gaps": [],
+      "subsection": "Blood examinations"
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   }
+  ],
+  "unreferenced": [],
+  "coverage": null,
+  "quality": {
+   "items": 2,
+   "coded": 2,
+   "dated": 2,
+   "with_gaps": 0,
+   "gaps": {},
+   "categories": {
+    "result": 2
+   },
+   "sections_populated": 1,
+   "sections_empty": 0,
+   "earliest": "2023-03-27T11:24:26+01:00",
+   "latest": "2023-03-27T11:24:26+01:00"
+  },
+  "as_of": "2022-03-30",
+  "attention": [],
+  "source": {
+   "authors": [
+    "Matteo Cervone",
+    "Filippo Mancusi"
+   ],
+   "organization": "SAN RAFFAELE NOMENTANA",
+   "country": "100"
+  },
+  "care_teams": [],
+  "dosing": {
+   "renal": null,
+   "weight": null
+  }
+ }
+}

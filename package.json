@@ -1,0 +1,55 @@
+{
+  "name": "fhir-document-viewer",
+  "version": "0.1.0",
+  "description": "Web component that renders a FHIR document Bundle (IPS, European Patient Summary, EHDS lab report, prescription, imaging report, discharge report) as a clinician-readable dashboard and timeline. No dependencies, no build step.",
+  "keywords": [
+    "fhir",
+    "hl7",
+    "ips",
+    "international-patient-summary",
+    "european-patient-summary",
+    "eps",
+    "ehds",
+    "patient-summary",
+    "document-bundle",
+    "fhir-document",
+    "fhir-viewer",
+    "viewer",
+    "renderer",
+    "web-component",
+    "custom-element",
+    "clinical",
+    "timeline",
+    "healthcare"
+  ],
+  "license": "MIT",
+  "author": "Vadim Peretokin",
+  "homepage": "https://vadi2.github.io/fhir-document-viewer/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vadi2/fhir-document-viewer.git"
+  },
+  "bugs": "https://github.com/vadi2/fhir-document-viewer/issues",
+  "type": "module",
+  "main": "./fhir-document-viewer.js",
+  "module": "./fhir-document-viewer.js",
+  "exports": {
+    ".": "./fhir-document-viewer.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "fhir-document-viewer.js",
+    "src/",
+    "llms.txt"
+  ],
+  "sideEffects": [
+    "./fhir-document-viewer.js",
+    "./src/element.js"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

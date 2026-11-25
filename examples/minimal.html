@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fhir-document-viewer - minimal example</title>
+<!-- On your own page, load it from the CDN instead:
+     https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js -->
+<script type="module" src="../fhir-document-viewer.js"></script>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 16px; background: light-dark(#fbfaf3, #15141a); }
+  fhir-document-viewer { max-width: 1100px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<fhir-document-viewer src="../samples/ville-difficult-airway.json" view="dashboard"></fhir-document-viewer>
+<script>
+  // ?view=timeline and ?theme=dark, for trying things out
+  const q = new URLSearchParams(location.search);
+  const viewer = document.querySelector("fhir-document-viewer");
+  for (const name of ["view", "theme", "switcher"]) {
+    if (q.get(name)) viewer.setAttribute(name, q.get(name));
+  }
+  if (q.get("theme")) document.documentElement.style.colorScheme = q.get("theme");
+</script>
+</body>
+</html>

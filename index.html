@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FHIR document viewer - IPS and European Patient Summary, read like a clinician</title>
+<meta name="description" content="Open source viewer for FHIR document Bundles: International Patient Summary (IPS), European Patient Summary (EPS), laboratory reports, prescriptions, imaging reports and discharge reports. A dependency-free web component with a clinical dashboard and timeline. Try it with your own Bundle - it never leaves your browser.">
+<link rel="canonical" href="https://vadi2.github.io/fhir-document-viewer/">
+<link rel="alternate" type="text/plain" href="llms.txt" title="llms.txt">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23503aa8'/%3E%3Cpath d='M8 9h16M8 16h16M8 23h10' stroke='%23fff' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap">
+<style>
+/* The page around the viewer wears Provbana's look, so the demo shows the
+   view as it is there. The viewer itself brings its own stylesheet. */
+:root { color-scheme: light dark; }
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"] { color-scheme: dark; }
+:root {
+  --font-sans: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Arial, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-medium: clamp(1rem, 1rem + ((1vw - 0.2rem) * 0.196), 1.125rem);
+  --fs-large: clamp(1.125rem, 1.125rem + ((1vw - 0.2rem) * 0.392), 1.375rem);
+  --fs-xx-large: clamp(2.15rem, 2.15rem + ((1vw - 0.2rem) * 1.333), 3rem);
+  --measure: 645px;
+  --pad-x: clamp(20px, 5vw, 50px);
+  --bg: light-dark(#fbfaf3, #15141a);
+  --card: light-dark(#ffffff, #1e1c26);
+  --text: light-dark(#111111, #f3f1e7);
+  --muted: light-dark(#5f5f5f, #a7a2b3);
+  --border: light-dark(#d8d5c7, #322e3d);
+  --field-border: light-dark(#8d8878, #6e6880);
+  --accent: light-dark(#503aa8, #b9a8f7);
+  --accent-soft: light-dark(#efebfa, #292340);
+  --btn: light-dark(#111111, #f3f1e7);
+  --btn-on: light-dark(#ffffff, #15141a);
+  --fail: light-dark(#b3261e, #ff8a80);
+  --code-bg: light-dark(#f3f1e6, #131119);
+}
+@supports not (color: light-dark(#000, #fff)) {
+  :root { --bg: #fbfaf3; --card: #ffffff; --text: #111111; --muted: #5f5f5f; --border: #d8d5c7; --field-border: #8d8878; --accent: #503aa8; --accent-soft: #efebfa; --btn: #111111; --btn-on: #ffffff; --fail: #b3261e; --code-bg: #f3f1e6; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 300 16px/1.5 var(--font-sans); letter-spacing: -0.1px; }
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { text-decoration: none; }
+table, textarea, .muted { font-weight: 400; }
+header, main, footer { max-width: 1060px; margin: 0 auto; padding-left: var(--pad-x);
+  padding-right: var(--pad-x); }
+header { padding-top: 20px; padding-bottom: 6px; }
+main { padding-top: 4px; padding-bottom: 40px; }
+.head-row { display: flex; align-items: center; justify-content: space-between;
+  gap: 14px 24px; flex-wrap: wrap; }
+.site-title { margin: 0; font-size: var(--fs-medium); font-weight: 700; }
+.site-title a { color: var(--text); text-decoration: none; }
+.head-nav { display: flex; align-items: center; gap: 10px 22px; flex-wrap: wrap; }
+h1, h2, h3 { font-weight: 400; letter-spacing: -0.1px; line-height: 1.125; }
+h1 { margin: clamp(28px, 5vw, 56px) 0 0; font-size: var(--fs-xx-large); }
+.sub { margin: 14px 0 0; color: var(--muted); font-size: var(--fs-large);
+  max-width: var(--measure); }
+h2 { margin: 0 0 14px; font-size: var(--fs-large); }
+.card { background: var(--card); border: 1px solid var(--border); padding: 26px 28px;
+  margin-top: 22px; }
+.card > p.muted { max-width: var(--measure); }
+.muted { color: var(--muted); font-size: 0.86rem; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th { text-align: left; color: var(--muted); font-size: 0.76rem; text-transform: uppercase;
+  letter-spacing: 0.1em; font-weight: 700; padding: 6px 10px;
+  border-bottom: 1px solid var(--border); }
+td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+tr:last-child td { border-bottom: none; }
+.table-wrap { overflow-x: auto; }
+tr.cv-row { cursor: pointer; }
+tr.cv-row:hover td, tr.cv-row.open td { background: var(--accent-soft); }
+a.cv-open { color: inherit; text-decoration: none; }
+tr.cv-row:hover a.cv-open { text-decoration: underline; }
+td.cv-patient { min-width: 13em; }
+.cv-sub { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
+td.cv-scenario { max-width: 30rem; font-size: 0.8rem; line-height: 1.45; color: var(--muted); }
+/* A phone has no room for three columns: each document becomes a block. */
+@media (max-width: 640px) {
+  #samples thead { display: none; }
+  #samples tr { display: block; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  #samples tr:last-child { border-bottom: none; }
+  #samples td { display: block; padding: 2px 10px; border-bottom: none; }
+  td.cv-patient { min-width: 0; }
+  td.cv-scenario { max-width: none; }
+}
+.cv-horizon { margin-top: 4px; font-style: italic; }
+.sample-note { margin: 6px 0 0; font-size: 0.78rem; }
+textarea { width: 100%; padding: 12px; border: 1px solid var(--field-border);
+  background: var(--bg); color: var(--text); font: 400 0.82rem/1.5 var(--font-mono);
+  font-variant-ligatures: none; min-height: 120px; resize: vertical; margin-top: 12px; }
+textarea:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+button { font: inherit; font-weight: 500; border: none; padding: 12px 28px; cursor: pointer;
+  background: var(--btn); color: var(--btn-on); letter-spacing: -0.1px; }
+button:hover { background: color-mix(in srgb, var(--btn) 85%, transparent); }
+button:focus-visible { outline: 2px solid var(--muted); outline-offset: 2px; }
+button.ghost { background: transparent; color: var(--accent);
+  border: 1px solid var(--field-border); font-weight: 400; padding: 5px 12px;
+  font-size: 0.8rem; }
+button.ghost:hover { background: var(--accent-soft); }
+.row { display: flex; gap: 10px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+#own.over { outline: 2px dashed var(--accent); outline-offset: -2px; }
+#own-msg { margin: 8px 0 0; color: var(--fail); }
+fhir-document-viewer { margin-top: 22px; --fdv-font-weight: 300; scroll-margin-top: 12px; }
+pre { margin: 12px 0 0; padding: 14px 16px; overflow-x: auto; background: var(--code-bg);
+  border: 1px solid var(--border); font: 400 0.82rem/1.55 var(--font-mono);
+  font-variant-ligatures: none; }
+code { font-family: var(--font-mono); font-size: 0.9em; font-variant-ligatures: none; }
+.handles { margin: 10px 0 0; padding-left: 1.2em; font-size: 0.92rem; }
+.handles li { margin: 4px 0; }
+footer { margin-top: 0; padding-bottom: 40px; font-size: 0.8rem; color: var(--muted);
+  line-height: 1.6; }
+</style>
+</head>
+<body>
+<header>
+  <div class="head-row">
+    <p class="site-title"><a href="./">fhir-document-viewer</a></p>
+    <nav class="head-nav">
+      <a href="https://github.com/vadi2/fhir-document-viewer">GitHub</a>
+      <a href="https://github.com/vadi2/fhir-document-viewer#readme">Docs</a>
+      <button type="button" class="ghost" id="theme" title="Switch between system, light and dark">Theme: system</button>
+    </nav>
+  </div>
+  <h1>FHIR document viewer</h1>
+  <p class="sub">A FHIR document Bundle - an International or European Patient Summary, a lab
+    report, a prescription - shown the way a clinician reads it: what is critical first, what
+    is missing or possibly outdated next, then the document, a dashboard or a timeline.</p>
+</header>
+
+<main>
+<section class="card">
+  <h2>Example documents</h2>
+  <div id="samples"><p class="muted">Loading the examples&hellip;</p></div>
+</section>
+
+<section class="card" id="own">
+  <h2>Your own Bundle</h2>
+  <p class="muted" style="margin:0">Paste a Bundle, choose a .json file or drop one on this
+    box. It is read in this browser tab only - nothing is uploaded, and there is no server
+    to upload it to.</p>
+  <textarea id="paste" spellcheck="false" aria-label="FHIR Bundle JSON to show"
+    placeholder='{ "resourceType": "Bundle", "type": "document", ... }'></textarea>
+  <div class="row">
+    <button type="button" id="paste-go">Show it</button>
+    <button type="button" class="ghost" id="pick">Choose a file&hellip;</button>
+    <input type="file" id="file" accept=".json,application/json,application/fhir+json" hidden>
+  </div>
+  <p class="muted" id="own-msg" role="status" hidden></p>
+</section>
+
+<fhir-document-viewer id="viewer"></fhir-document-viewer>
+
+<section class="card">
+  <h2>Use it on your page</h2>
+  <p class="muted" style="margin:0">One script tag, no build step and no dependencies.
+    The element fetches the Bundle from <code>src</code>, or takes it as a property.</p>
+<pre><code>&lt;script type="module"
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.0/fhir-document-viewer.js"&gt;&lt;/script&gt;
+
+&lt;fhir-document-viewer src="patient-summary.json" view="dashboard"&gt;&lt;/fhir-document-viewer&gt;</code></pre>
+<pre><code>// or hand it a Bundle you already have, as JSON text or a parsed object
+document.querySelector("fhir-document-viewer").bundle = bundleJson;</code></pre>
+  <ul class="handles">
+    <li><strong>Patient summaries</strong> (HL7 IPS, HL7 Europe EPS): every section, with the
+      three kinds of empty kept apart and the sections the guide expects but the document
+      did not send.</li>
+    <li><strong>Laboratory reports, prescriptions and dispenses, imaging reports, hospital
+      discharge reports</strong>: recognised and read with the same rules; a prescription
+      Bundle without a Composition is shown as one list of entries.</li>
+    <li>Any other FHIR R4 document Bundle is read section by section.</li>
+  </ul>
+  <p class="muted" style="margin:12px 0 0">More in the
+    <a href="https://github.com/vadi2/fhir-document-viewer#readme">README</a>, and a
+    machine-readable outline in <a href="llms.txt">llms.txt</a>.</p>
+</section>
+</main>
+
+<footer>
+  <p>Lifted out of <a href="https://github.com/vadi2/Provbana">Provbana</a>, the open source
+    platform for FHIR document tracks at hackathons, where this view was built for the
+    Nordic Hackathon 2026. MIT licensed. It is a reading aid for developers and testers,
+    not a medical device: do not use it to make decisions about real patients.</p>
+</footer>
+
+<script type="module">
+import "./fhir-document-viewer.js";
+
+const $ = (sel) => document.querySelector(sel);
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const viewer = $("#viewer");
+const VIEWS = ["document", "dashboard", "timeline"];
+const LOCAL = "local";
+const LOCAL_KEY = "fdv-own-bundle";
+const START = "ville-difficult-airway/dashboard";
+
+let samples = [];
+let own = null;  // { text, name }
+
+/* The number on the card, read off the bundle so the list cannot disagree
+   with the document it describes. */
+const NATIONAL_IDS = {
+  "http://electronichealth.se/identifier/personnummer": ["Personnummer", 12, 8],
+  "http://electronichealth.se/identifier/samordningsnummer": ["Samordningsnummer", 12, 8],
+  "urn:oid:2.16.578.1.12.4.1.4.1": ["Fødselsnummer"],
+  "urn:oid:2.16.578.1.12.4.1.4.2": ["D-nummer"],
+  "urn:oid:1.2.208.176.1.2": ["CPR-nummer", 10, 6],
+  "urn:oid:1.2.246.21": ["Henkilötunnus"],
+};
+function nationalId(text) {
+  let entries = [];
+  try { entries = JSON.parse(text).entry || []; } catch (e) { return null; }
+  for (const entry of entries) {
+    const res = (entry && entry.resource) || {};
+    if (res.resourceType !== "Patient") continue;
+    for (const ident of res.identifier || []) {
+      const known = NATIONAL_IDS[ident.system];
+      let value = ident.value || "";
+      if (!known || !value) continue;
+      const [label, length, split] = known;
+      if (length && value.length === length && /^\d+$/.test(value)) {
+        value = value.slice(0, split) + "-" + value.slice(split);
+      }
+      return { label, value };
+    }
+  }
+  return null;
+}
+
+function route() {
+  const parts = location.hash.replace(/^#/, "").split("/").map(decodeURIComponent);
+  return { id: parts[0] || "", view: VIEWS.includes(parts[1]) ? parts[1] : null };
+}
+function go(id, view, replace) {
+  const hash = "#" + [id, view].filter(Boolean).map(encodeURIComponent).join("/");
+  if (replace) history.replaceState(null, "", hash); else location.hash = hash;
+  if (replace) show();
+}
+
+function renderSamples(disclaimer) {
+  $("#samples").innerHTML = '<div class="table-wrap"><table><thead><tr>'
+    + '<th scope="col">Patient</th><th scope="col">Language</th><th scope="col">Scenario</th>'
+    + "</tr></thead><tbody>"
+    + samples.map((s) => '<tr class="cv-row" data-sample="' + esc(s.id)
+        + '" title="click to open"><td class="cv-patient"><strong><a class="cv-open" href="#'
+        + esc(s.id) + '">' + esc(s.name) + "</a></strong>"
+        + '<div class="cv-sub">' + esc(s.tagline) + "</div>"
+        + (s.identifier ? '<div class="cv-sub">' + esc(s.identifier.label) + " "
+            + esc(s.identifier.value) + "</div>" : "")
+        + '<div class="cv-sub"><a href="samples/' + esc(s.id) + '.json" download>FHIR bundle</a></div>'
+        + "</td>"
+        + "<td>" + esc(s.language) + "</td>"
+        + '<td class="cv-scenario">' + esc(s.scenario)
+        + (s.scenarioUrl ? ' <a href="' + esc(s.scenarioUrl) + '" target="_blank" rel="noopener">'
+            + esc(s.scenarioName || "Read the scenario") + " ↗</a>" : "")
+        + (s.horizon ? '<div class="cv-sub cv-horizon">' + esc(s.horizon) + "</div>" : "")
+        + "</td></tr>").join("")
+    + "</tbody></table></div>"
+    + '<p class="muted sample-note">' + esc(disclaimer) + "</p>";
+}
+
+function ownMsg(text) {
+  $("#own-msg").textContent = text || "";
+  $("#own-msg").hidden = !text;
+}
+
+let shown = null;
+function show() {
+  const r = route();
+  const sample = samples.find((s) => s.id === r.id);
+  document.querySelectorAll("tr.cv-row").forEach((tr) =>
+    tr.classList.toggle("open", tr.dataset.sample === r.id));
+  if (r.view) viewer.view = r.view; else viewer.removeAttribute("view");
+  const key = sample ? sample.id : (r.id === LOCAL && own ? LOCAL : null);
+  if (key === shown) return;
+  shown = key;
+  if (sample) {
+    viewer.caption = "Synthetic example";
+    viewer.bundle = sample.text;
+  } else if (key === LOCAL) {
+    viewer.caption = "Local preview of " + (own.name || "pasted JSON") + " - not uploaded anywhere";
+    viewer.bundle = own.text;
+  } else {
+    viewer.bundle = null;
+  }
+}
+
+function showOwn(text, name) {
+  ownMsg("");
+  let ok = false;
+  try { ok = JSON.parse(text).resourceType === "Bundle"; } catch (e) { /* said below */ }
+  if (!ok) { ownMsg("Could not show " + (name || "that") + ": Not a FHIR Bundle in JSON"); return; }
+  own = { text, name: name || null };
+  try { sessionStorage.setItem(LOCAL_KEY, JSON.stringify(own)); } catch (e) { /* too big or blocked: it still shows */ }
+  shown = null;  // a second bundle reuses the route, so force the redraw
+  if (route().id === LOCAL) show(); else go(LOCAL, null);
+  viewer.scrollIntoView({ behavior: "smooth" });
+}
+async function showFile(file) {
+  if (!file) return;
+  try { showOwn(await file.text(), file.name); }
+  catch (e) { ownMsg("Could not read " + file.name + ": " + e.message); }
+}
+
+$("#samples").addEventListener("click", (ev) => {
+  const row = ev.target.closest("tr.cv-row");
+  if (!row || ev.target.closest("a:not(.cv-open)")) return;
+  ev.preventDefault();
+  go(row.dataset.sample, route().view);
+  viewer.scrollIntoView({ behavior: "smooth" });
+});
+viewer.addEventListener("viewchange", (ev) => {
+  const r = route();
+  if (r.id) go(r.id, ev.detail.view, true);
+});
+$("#paste-go").addEventListener("click", () => {
+  const text = $("#paste").value.trim();
+  if (text) showOwn(text, null); else ownMsg("Paste a bundle first.");
+});
+$("#pick").addEventListener("click", () => {
+  $("#file").value = "";  // picking the same file again should still fire
+  $("#file").click();
+});
+$("#file").addEventListener("change", () => showFile($("#file").files[0]));
+const box = $("#own");
+["dragenter", "dragover"].forEach((type) => box.addEventListener(type, (ev) => {
+  ev.preventDefault();
+  box.classList.add("over");
+}));
+["dragleave", "drop"].forEach((type) => box.addEventListener(type, () => box.classList.remove("over")));
+box.addEventListener("drop", (ev) => {
+  ev.preventDefault();
+  const file = ev.dataTransfer.files[0];
+  if (file) showFile(file);
+  else showOwn(ev.dataTransfer.getData("text/plain").trim(), null);
+});
+// a file dropped beside the box should not navigate the tab away from the page
+["dragover", "drop"].forEach((type) => window.addEventListener(type, (ev) => ev.preventDefault()));
+window.addEventListener("hashchange", show);
+
+const THEMES = ["system", "light", "dark"];
+function setTheme(theme) {
+  if (theme === "system") delete document.documentElement.dataset.theme;
+  else document.documentElement.dataset.theme = theme;
+  $("#theme").textContent = "Theme: " + theme;
+  try { localStorage.setItem("fdv-theme", theme); } catch (e) { /* not kept, still applied */ }
+}
+$("#theme").addEventListener("click", () => {
+  const now = document.documentElement.dataset.theme || "system";
+  setTheme(THEMES[(THEMES.indexOf(now) + 1) % THEMES.length]);
+});
+try { setTheme(THEMES.includes(localStorage.getItem("fdv-theme")) ? localStorage.getItem("fdv-theme") : "system"); }
+catch (e) { /* storage blocked: the system theme stands */ }
+
+try { own = JSON.parse(sessionStorage.getItem(LOCAL_KEY) || "null"); } catch (e) { own = null; }
+
+try {
+  const index = await (await fetch("samples.json")).json();
+  samples = await Promise.all(index.samples.map(async (s) => {
+    const text = await (await fetch("samples/" + s.id + ".json")).text();
+    return Object.assign({}, s, { text, identifier: nationalId(text) });
+  }));
+  renderSamples(index.disclaimer);
+} catch (e) {
+  $("#samples").innerHTML = '<p class="muted">Could not load the examples: ' + esc(e.message) + "</p>";
+}
+if (!route().id || (route().id === LOCAL && !own)) history.replaceState(null, "", "#" + START);
+show();
+</script>
+</body>
+</html>

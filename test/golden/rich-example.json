@@ -1,0 +1,1539 @@
+{
+ "today": "2026-11-25",
+ "doc_type": "eps",
+ "summary": {
+  "patient": {
+   "name": "Petra Schwartz",
+   "birth_date": "1950-04-19",
+   "gender": "female",
+   "identifiers": [
+    {
+     "system": "http://example.org/identifier-1",
+     "value": "5042-537688-1"
+    },
+    {
+     "system": "http://example.org/identifier-2",
+     "value": "a707536c-14f2-3606-4ed4-7fd9991fd18e"
+    }
+   ],
+   "contacts": [],
+   "languages": []
+  },
+  "composition": {
+   "title": "European Patient Summary",
+   "date": "2025-08-31T17:46:55Z",
+   "language": null
+  },
+  "sections": [
+   {
+    "title": "Problem list",
+    "kind": "problem",
+    "items": [
+     {
+      "label": "Hyperlipidemia",
+      "detail": "onset 2020-06-15",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "2020-06-15",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "2020-06-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "55822004",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Emphysematous bronchitis",
+      "detail": "onset 2020-06-15",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "2020-06-15",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "2020-06-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "185086009",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Ischemic heart disease",
+      "detail": "onset 2010-04-19",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "2010-04-19",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "2010-04-19"
+       }
+      ],
+      "note_dates": [],
+      "code": "414545008",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Chronic sinusitis",
+      "detail": "onset 1994-01-16",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "1994-01-16",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "1994-01-16"
+       }
+      ],
+      "note_dates": [],
+      "code": "40055000",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Anemia",
+      "detail": "onset 1993-02-22",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "1993-02-22",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "1993-02-22"
+       }
+      ],
+      "note_dates": [],
+      "code": "271737000",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Prediabetes",
+      "detail": "onset 1991-02-18",
+      "status": "active",
+      "note": null,
+      "category": "problem",
+      "date": "1991-02-18",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "1991-02-18"
+       }
+      ],
+      "note_dates": [],
+      "code": "714628002",
+      "code_system": "SNOMED CT",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Medication list",
+    "kind": "medication",
+    "items": [
+     {
+      "label": "Simvastatin 10 mg oral tablet",
+      "detail": "1 tablet (10 mg) by mouth once daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2025-07-15",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2025-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "314231",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Albuterol (as albuterol sulfate) 5 mg/mL solution for inhalation",
+      "detail": "2.5 mg (0.5 mL of 5 mg/mL solution) via nebulizer every 4 to 6 hours as needed",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2025-07-14",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2025-07-14"
+       }
+      ],
+      "note_dates": [],
+      "code": "245314",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Acetaminophen 300 mg and hydrocodone bitartrate 5 mg oral tablet",
+      "detail": "1 tablet (300 mg/5 mg) by mouth every 4 to 6 hours as needed for pain",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2025-07-14",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2025-07-14"
+       }
+      ],
+      "note_dates": [],
+      "code": "856987",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "60 ACTUAT Fluticasone propionate 0.25 MG/ACTUAT / salmeterol 0.05 MG/ACTUAT Dry Powder Inhaler",
+      "detail": "1 inhalation (0.25 mg/0.05 mg) twice daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2025-07-14",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2025-07-14"
+       }
+      ],
+      "note_dates": [],
+      "code": "896209",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Clopidogrel (as clopidogrel bisulfate) 75 mg oral tablet",
+      "detail": "1 tablet (75 mg) by mouth once daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2010-04-26",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2010-04-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "309362",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Simvastatin 20 mg oral tablet",
+      "detail": "1 tablet (20 mg) by mouth once daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2010-04-26",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2010-04-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "312961",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Nitroglycerin 400 microgram/actuation sublingual spray",
+      "detail": "400 micrograms (1 spray) sublingually as needed for chest pain, may repeat every 5 minutes as needed, up to 3 sprays in 15 minutes",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2010-04-26",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2010-04-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "705129",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Metoprolol tartrate (as metoprolol succinate) 100 mg prolonged-release oral tablet",
+      "detail": "1 tablet (100 mg) once daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2010-04-26",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2010-04-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "866412",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "doxycycline hyclate 100 MG",
+      "detail": "100 mg twice daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "2008-08-12",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "2008-08-12"
+       }
+      ],
+      "note_dates": [],
+      "code": "1649987",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Astemizole 10 mg oral tablet",
+      "detail": "1 tablet (10 mg) once daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "1978-10-26",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "1978-10-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "197378",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Hydrocortisone 10 mg/g and urea 100 mg/g cutaneous cream",
+      "detail": "Apply a thin layer (approximately 1 g) to the affected area twice daily",
+      "status": "active",
+      "note": null,
+      "basis": "stated as taking",
+      "category": "medication",
+      "date": "1978-10-11",
+      "date_kind": "taking since",
+      "dates": [
+       {
+        "kind": "taking since",
+        "value": "1978-10-11"
+       }
+      ],
+      "note_dates": [],
+      "code": "106258",
+      "code_system": "RxNorm",
+      "flags": [
+       "active"
+      ],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Immunizations list",
+    "kind": "immunization",
+    "items": [
+     {
+      "label": "Influenza virus antigen only vaccine product",
+      "detail": "2025-07-14",
+      "status": "completed",
+      "note": null,
+      "category": "immunization",
+      "date": "2025-07-14",
+      "date_kind": "given",
+      "dates": [
+       {
+        "kind": "given",
+        "value": "2025-07-14"
+       }
+      ],
+      "note_dates": [],
+      "code": "1181000221105",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "SARS-CoV-2 mRNA vaccine",
+      "detail": "2021-03-01",
+      "status": "completed",
+      "note": null,
+      "category": "immunization",
+      "date": "2021-03-01",
+      "date_kind": "given",
+      "dates": [
+       {
+        "kind": "given",
+        "value": "2021-03-01"
+       }
+      ],
+      "note_dates": [],
+      "code": "1119349007",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Clostridium tetani toxoid antigen adsorbed only vaccine product",
+      "detail": "2018-06-04",
+      "status": "completed",
+      "note": null,
+      "category": "immunization",
+      "date": "2018-06-04",
+      "date_kind": "given",
+      "dates": [
+       {
+        "kind": "given",
+        "value": "2018-06-04"
+       }
+      ],
+      "note_dates": [],
+      "code": "777725002",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Allergies and Intolerances",
+    "kind": "allergy",
+    "items": [
+     {
+      "label": "Penicillin V",
+      "detail": null,
+      "status": "active",
+      "note": null,
+      "verification": "confirmed",
+      "category": "allergy",
+      "date": "1978-10-26",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "1978-10-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "372725003",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no criticality",
+       "no reaction recorded"
+      ]
+     },
+     {
+      "label": "Allergic disposition",
+      "detail": null,
+      "status": "active",
+      "note": null,
+      "verification": "confirmed",
+      "category": "allergy",
+      "date": "1978-10-26",
+      "date_kind": "onset",
+      "dates": [
+       {
+        "kind": "onset",
+        "value": "1978-10-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "609328004",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no criticality",
+       "no reaction recorded"
+      ]
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Care Plan",
+    "kind": "plan",
+    "items": [
+     {
+      "label": "Hyperlipidemia clinical management plan (record artifact)",
+      "detail": "plan start 2020-07-06",
+      "status": "unknown",
+      "note": null,
+      "steps": [
+       {
+        "text": "Hyperlipidemia clinical management plan",
+        "status": "unknown",
+        "scheduled": null
+       }
+      ],
+      "owner": null,
+      "owner_phone": null,
+      "category": "plan",
+      "date": "2020-07-06",
+      "date_kind": "plan start",
+      "dates": [
+       {
+        "kind": "plan start",
+        "value": "2020-07-06"
+       }
+      ],
+      "note_dates": [],
+      "code": "734163000",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no named owner"
+      ]
+     },
+     {
+      "label": "Chronic obstructive pulmonary disease clinical management plan",
+      "detail": "plan start 2020-06-15",
+      "status": "unknown",
+      "note": null,
+      "steps": [],
+      "owner": null,
+      "owner_phone": null,
+      "category": "plan",
+      "date": "2020-06-15",
+      "date_kind": "plan start",
+      "dates": [
+       {
+        "kind": "plan start",
+        "value": "2020-06-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "734163000",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no named owner"
+      ]
+     },
+     {
+      "label": "Diabetes self management plan",
+      "detail": "plan start 1991-02-18",
+      "status": "unknown",
+      "note": null,
+      "steps": [],
+      "owner": null,
+      "owner_phone": null,
+      "category": "plan",
+      "date": "1991-02-18",
+      "date_kind": "plan start",
+      "dates": [
+       {
+        "kind": "plan start",
+        "value": "1991-02-18"
+       }
+      ],
+      "note_dates": [],
+      "code": "734163000",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no named owner"
+      ]
+     },
+     {
+      "label": "Self-care interventions (procedure)",
+      "detail": "plan start 1978-10-26",
+      "status": "unknown",
+      "note": null,
+      "steps": [
+       {
+        "text": "Self-care interventions",
+        "status": "unknown",
+        "scheduled": null
+       }
+      ],
+      "owner": null,
+      "owner_phone": null,
+      "category": "plan",
+      "date": "1978-10-26",
+      "date_kind": "plan start",
+      "dates": [
+       {
+        "kind": "plan start",
+        "value": "1978-10-26"
+       }
+      ],
+      "note_dates": [],
+      "code": "734163000",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": [
+       "no named owner"
+      ]
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "History of Procedures",
+    "kind": "procedure",
+    "items": [],
+    "empty_reason": "None known",
+    "narrative": null,
+    "state": "none-known"
+   },
+   {
+    "title": "Vital Signs",
+    "kind": "result",
+    "items": [
+     {
+      "label": "Blood Pressure panel with all children optional",
+      "detail": "Systolic Blood Pressure 113 mm[Hg], Diastolic Blood Pressure 55 mm[Hg]; 2025-07-14",
+      "status": "final",
+      "note": null,
+      "range": null,
+      "performer": null,
+      "category": "result",
+      "date": "2025-07-14",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2025-07-14"
+       }
+      ],
+      "note_dates": [],
+      "code": "85354-9",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Blood Pressure panel with all children optional",
+      "detail": "Systolic Blood Pressure 104 mm[Hg], Diastolic Blood Pressure 62 mm[Hg]; 2024-07-08",
+      "status": "final",
+      "note": null,
+      "range": null,
+      "performer": null,
+      "category": "result",
+      "date": "2024-07-08",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-08"
+       }
+      ],
+      "note_dates": [],
+      "code": "85354-9",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Relevant diagnostic tests/laboratory data",
+    "kind": "result",
+    "items": [
+     {
+      "label": "Glucose [Mass/volume] in Blood",
+      "detail": "65.9 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "direction": "low",
+      "range": "from 70 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Glucose (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2339-0",
+      "code_system": "LOINC",
+      "flags": [
+       "abnormal"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Urea nitrogen [Mass/volume] in Blood",
+      "detail": "9.2 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 7 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Urea nitrogen (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "6299-2",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Creatinine [Mass/volume] in Blood",
+      "detail": "2.7 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "direction": "high",
+      "range": "from 0.6 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Creatinine (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "38483-4",
+      "code_system": "LOINC",
+      "flags": [
+       "abnormal"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Calcium [Mass/volume] in Blood",
+      "detail": "8.7 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 8.5 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Calcium (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "49765-1",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Sodium [Moles/volume] in Blood",
+      "detail": "136.4 mmol/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 135 mmol/L",
+      "performer": "The Central European Lab",
+      "short": "Sodium (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2947-0",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Potassium [Moles/volume] in Blood",
+      "detail": "4.4 mmol/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 3.5 mmol/L",
+      "performer": "The Central European Lab",
+      "short": "Potassium (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "6298-4",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Chloride [Moles/volume] in Blood",
+      "detail": "101.2 mmol/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 98 mmol/L",
+      "performer": "The Central European Lab",
+      "short": "Chloride (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2069-3",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Carbon dioxide, total [Moles/volume] in Blood",
+      "detail": "28.5 mmol/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 22 mmol/L",
+      "performer": "The Central European Lab",
+      "short": "Carbon dioxide, total (blood)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "20565-8",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Protein [Mass/volume] in Serum or Plasma",
+      "detail": "6.9 g/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 6 g/dL",
+      "performer": "The Central European Lab",
+      "short": "Protein (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2885-2",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Albumin [Mass/volume] in Serum or Plasma",
+      "detail": "4 g/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 3.5 g/dL",
+      "performer": "The Central European Lab",
+      "short": "Albumin (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "1751-7",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Globulin [Mass/volume] in Serum by calculation",
+      "detail": "2.9 g/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 2 g/L",
+      "performer": "The Central European Lab",
+      "short": "Globulin (serum)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "10834-0",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Bilirubin.total [Mass/volume] in Serum or Plasma",
+      "detail": "0.8 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 0.3 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Bilirubin.total (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "1975-2",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma",
+      "detail": "87 U/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 35 U/L",
+      "performer": "The Central European Lab",
+      "short": "Alkaline phosphatase (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "6768-6",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+      "detail": "45 U/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 7 U/L",
+      "performer": "The Central European Lab",
+      "short": "Alanine aminotransferase (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "1742-6",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma",
+      "detail": "8.7 U/L; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "direction": "low",
+      "range": "from 10 U/L",
+      "performer": "The Central European Lab",
+      "short": "Aspartate aminotransferase (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "1920-8",
+      "code_system": "LOINC",
+      "flags": [
+       "abnormal"
+      ],
+      "gaps": []
+     },
+     {
+      "label": "Cholesterol [Mass/volume] in Serum or Plasma",
+      "detail": "193.2 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 125 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Cholesterol (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2093-3",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Triglyceride [Mass/volume] in Serum or Plasma",
+      "detail": "149.3 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 0 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Triglyceride (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2571-8",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Cholesterol in LDL [Mass/volume] in Serum or Plasma by Direct assay",
+      "detail": "129.5 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 0 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Cholesterol in LDL (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "18262-6",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Cholesterol in HDL [Mass/volume] in Serum or Plasma",
+      "detail": "62.7 mg/dL; 2024-07-15",
+      "status": "final",
+      "note": null,
+      "range": "from 50 mg/dL",
+      "performer": "The Central European Lab",
+      "short": "Cholesterol in HDL (serum or plasma)",
+      "category": "result",
+      "date": "2024-07-15",
+      "date_kind": "taken",
+      "dates": [
+       {
+        "kind": "taken",
+        "value": "2024-07-15"
+       }
+      ],
+      "note_dates": [],
+      "code": "2085-9",
+      "code_system": "LOINC",
+      "flags": [],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   },
+   {
+    "title": "Device Use",
+    "kind": "device",
+    "items": [
+     {
+      "label": "Home nebulizer (physical object)",
+      "detail": "in use since 2021-06-21",
+      "status": "active",
+      "note": null,
+      "category": "device",
+      "date": "2021-06-21",
+      "date_kind": "in use since",
+      "dates": [
+       {
+        "kind": "in use since",
+        "value": "2021-06-21"
+       }
+      ],
+      "note_dates": [],
+      "code": "170615005",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": []
+     },
+     {
+      "label": "Blood glucose meter (physical object)",
+      "detail": "in use since 1991-02-18",
+      "status": "active",
+      "note": null,
+      "category": "device",
+      "date": "1991-02-18",
+      "date_kind": "in use since",
+      "dates": [
+       {
+        "kind": "in use since",
+        "value": "1991-02-18"
+       }
+      ],
+      "note_dates": [],
+      "code": "337414009",
+      "code_system": "SNOMED CT",
+      "flags": [],
+      "gaps": []
+     }
+    ],
+    "empty_reason": null,
+    "narrative": null,
+    "state": "data"
+   }
+  ],
+  "unreferenced": [
+   {
+    "label": "Fracture of forearm",
+    "detail": "onset 2023-12-28",
+    "status": "inactive",
+    "note": null,
+    "category": "problem",
+    "date": "2023-12-28",
+    "date_kind": "onset",
+    "dates": [
+     {
+      "kind": "onset",
+      "value": "2023-12-28"
+     },
+     {
+      "kind": "resolved",
+      "value": "2024-03-30"
+     }
+    ],
+    "note_dates": [],
+    "code": "65966004",
+    "code_system": "SNOMED CT",
+    "flags": [],
+    "gaps": []
+   },
+   {
+    "label": "Fracture of bone",
+    "detail": "onset 2023-12-28",
+    "status": "inactive",
+    "note": null,
+    "category": "problem",
+    "date": "2023-12-28",
+    "date_kind": "onset",
+    "dates": [
+     {
+      "kind": "onset",
+      "value": "2023-12-28"
+     },
+     {
+      "kind": "resolved",
+      "value": "2024-03-30"
+     }
+    ],
+    "note_dates": [],
+    "code": "125605004",
+    "code_system": "SNOMED CT",
+    "flags": [],
+    "gaps": []
+   },
+   {
+    "label": "Viral sinusitis",
+    "detail": "onset 2019-03-08",
+    "status": "inactive",
+    "note": null,
+    "category": "problem",
+    "date": "2019-03-08",
+    "date_kind": "onset",
+    "dates": [
+     {
+      "kind": "onset",
+      "value": "2019-03-08"
+     },
+     {
+      "kind": "resolved",
+      "value": "2019-03-23"
+     }
+    ],
+    "note_dates": [],
+    "code": "444814009",
+    "code_system": "SNOMED CT",
+    "flags": [],
+    "gaps": []
+   },
+   {
+    "label": "Fracture of forearm",
+    "detail": "onset 2016-09-12",
+    "status": "inactive",
+    "note": null,
+    "category": "problem",
+    "date": "2016-09-12",
+    "date_kind": "onset",
+    "dates": [
+     {
+      "kind": "onset",
+      "value": "2016-09-12"
+     },
+     {
+      "kind": "resolved",
+      "value": "2016-11-30"
+     }
+    ],
+    "note_dates": [],
+    "code": "65966004",
+    "code_system": "SNOMED CT",
+    "flags": [],
+    "gaps": []
+   },
+   {
+    "label": "Fracture of bone",
+    "detail": "onset 2016-09-12",
+    "status": "inactive",
+    "note": null,
+    "category": "problem",
+    "date": "2016-09-12",
+    "date_kind": "onset",
+    "dates": [
+     {
+      "kind": "onset",
+      "value": "2016-09-12"
+     },
+     {
+      "kind": "resolved",
+      "value": "2016-11-30"
+     }
+    ],
+    "note_dates": [],
+    "code": "125605004",
+    "code_system": "SNOMED CT",
+    "flags": [],
+    "gaps": []
+   }
+  ],
+  "coverage": [
+   {
+    "code": "11450-4",
+    "name": "Problems",
+    "required": true,
+    "state": "data"
+   },
+   {
+    "code": "48765-2",
+    "name": "Allergies and intolerances",
+    "required": true,
+    "state": "data"
+   },
+   {
+    "code": "10160-0",
+    "name": "Medication summary",
+    "required": true,
+    "state": "data"
+   },
+   {
+    "code": "47519-4",
+    "name": "History of procedures",
+    "required": true,
+    "state": "none-known"
+   },
+   {
+    "code": "46264-8",
+    "name": "Medical devices",
+    "required": true,
+    "state": "data"
+   },
+   {
+    "code": "104605-1",
+    "name": "Alerts",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "11369-6",
+    "name": "Immunizations",
+    "required": false,
+    "state": "data"
+   },
+   {
+    "code": "30954-2",
+    "name": "Results",
+    "required": false,
+    "state": "data"
+   },
+   {
+    "code": "8716-3",
+    "name": "Vital signs",
+    "required": false,
+    "state": "data"
+   },
+   {
+    "code": "18776-5",
+    "name": "Plan of care",
+    "required": false,
+    "state": "data"
+   },
+   {
+    "code": "47420-5",
+    "name": "Functional status",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "42348-3",
+    "name": "Advance directives",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "29762-2",
+    "name": "Social history",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "10162-6",
+    "name": "History of pregnancy",
+    "required": false,
+    "state": "absent",
+    "applicable": false
+   },
+   {
+    "code": "11329-0",
+    "name": "Patient history",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "10182-4",
+    "name": "Travel history",
+    "required": false,
+    "state": "absent"
+   },
+   {
+    "code": "81338-6",
+    "name": "Patient story",
+    "required": false,
+    "state": "absent"
+   }
+  ],
+  "quality": {
+   "items": 54,
+   "coded": 54,
+   "dated": 54,
+   "with_gaps": 6,
+   "gaps": {
+    "no named owner": 4,
+    "no criticality": 2,
+    "no reaction recorded": 2
+   },
+   "categories": {
+    "problem": 11,
+    "medication": 11,
+    "immunization": 3,
+    "allergy": 2,
+    "plan": 4,
+    "result": 21,
+    "device": 2
+   },
+   "sections_populated": 8,
+   "sections_empty": 1,
+   "earliest": "1978-10-11",
+   "latest": "2025-07-15"
+  },
+  "as_of": "2025-08-31",
+  "attention": [
+   {
+    "kind": "stale-results",
+    "title": "Newest results are from 2025-07-14",
+    "detail": "1 month before this document. They are reference values, not a current basis for decisions. Flagged abnormal: Glucose 65.9 mg/dL (low, 2024-07-15), Creatinine 2.7 mg/dL (high, 2024-07-15), Aspartate aminotransferase 8.7 U/L (low, 2024-07-15).",
+    "date": "2025-07-14"
+   },
+   {
+    "kind": "unreconciled",
+    "title": "Medication list not reconciled",
+    "detail": "11 entries are statements of what is taken. The document carries no last-dose, dispensing or reconciliation date - confirm with the patient what is actually taken and when the last dose was.",
+    "date": null
+   },
+   {
+    "kind": "missing",
+    "title": "Not in this document: Functional status, Advance directives, Social history",
+    "detail": "Prior function, ADL and cognition unknown; limitations of treatment unknown - not to be assumed from age or comorbidity; no social history - living situation and support only as far as the care plan or patient story says.",
+    "date": null,
+    "sections": [
+     "47420-5",
+     "42348-3",
+     "29762-2"
+    ]
+   }
+  ],
+  "source": {
+   "authors": [
+    "Hel Ping"
+   ],
+   "organization": "BfA-Klinik",
+   "country": "Germany"
+  },
+  "care_teams": [],
+  "dosing": {
+   "renal": {
+    "value": "2.7 mg/dL",
+    "direction": "high",
+    "date": "2024-07-15",
+    "name": "Creatinine"
+   },
+   "weight": null
+  }
+ }
+}
