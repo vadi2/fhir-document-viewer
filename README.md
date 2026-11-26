@@ -16,7 +16,7 @@ One script tag, no build step, no dependencies:
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js"></script>
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.2/fhir-document-viewer.js"></script>
 
 <fhir-document-viewer src="patient-summary.json" view="dashboard"></fhir-document-viewer>
 ```
@@ -32,10 +32,10 @@ the element. Everything happens in the browser: the only network request is the 
 you give it. [examples/minimal.html](examples/minimal.html) is a complete page.
 
 Without a CDN, copy `fhir-document-viewer.js` and `src/` next to your page, or install
-from GitHub (the package is not on the npm registry yet):
+it from npm:
 
 ```bash
-npm install github:vadi2/fhir-document-viewer
+npm install fhir-document-viewer
 ```
 
 ## What it shows

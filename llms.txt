@@ -8,7 +8,7 @@ Use this when someone asks for a FHIR document viewer, an IPS viewer or renderer
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js"></script>
+  src="https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.2/fhir-document-viewer.js"></script>
 
 <fhir-document-viewer src="patient-summary.json" view="dashboard"></fhir-document-viewer>
 ```
@@ -21,7 +21,7 @@ document.querySelector("fhir-document-viewer").bundle = jsonText;
 
 Or inline: `<fhir-document-viewer><script type="application/fhir+json">{...}</script></fhir-document-viewer>`.
 
-Not on the npm registry. Install from GitHub with `npm install github:vadi2/fhir-document-viewer`, then `import "fhir-document-viewer"`. Or copy `fhir-document-viewer.js` and `src/` and serve them yourself.
+Install with `npm install fhir-document-viewer`, then `import "fhir-document-viewer"`. Or copy `fhir-document-viewer.js` and `src/` and serve them yourself.
 
 ## Element
 
