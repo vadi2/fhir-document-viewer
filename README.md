@@ -2,9 +2,8 @@
 
 A dependency-free web component that renders a FHIR document Bundle - an International
 Patient Summary (IPS), a European Patient Summary (EPS) or another EHDS document - the
-way a clinician would read it: critical alerts and their care plans first, then what is
-missing or possibly outdated, then a dashboard, a timeline or the document section by
-section.
+way a clinician would read it: critical alerts first, then what is missing or possibly
+outdated, then a dashboard, a timeline or the document section by section.
 
 **[Live demo](https://vadimperetok.in/fhir-document-viewer/)** - three synthetic
 patients, or paste your own Bundle (it stays in your browser).
@@ -24,164 +23,95 @@ One script tag, no build step, no dependencies:
 
 Or hand it a Bundle you already have, as JSON text or a parsed object:
 
-```html
-<fhir-document-viewer id="viewer"></fhir-document-viewer>
-<script type="module">
-  const response = await fetch("https://example.org/fhir/Bundle/123");
-  document.getElementById("viewer").bundle = await response.text();
-</script>
+```js
+document.querySelector("fhir-document-viewer").bundle = jsonText;
 ```
 
-Or put the Bundle in the page itself:
+A Bundle can also sit in the page, in a `<script type="application/fhir+json">` inside
+the element. Everything happens in the browser: the only network request is the `src`
+you give it. [examples/minimal.html](examples/minimal.html) is a complete page.
 
-```html
-<fhir-document-viewer>
-  <script type="application/fhir+json">{ "resourceType": "Bundle", "type": "document", ... }</script>
-</fhir-document-viewer>
-```
-
-Everything happens in the browser. The component makes no network request other than
-fetching the `src` you give it, and loads no fonts, scripts or styles of its own.
-
-[examples/minimal.html](examples/minimal.html) is a complete page.
-
-### Without a CDN
-
-Copy `fhir-document-viewer.js` and the `src/` folder next to your page and point the
-script tag at your copy, or install straight from GitHub (the package is not on the npm
-registry yet):
+Without a CDN, copy `fhir-document-viewer.js` and `src/` next to your page, or install
+from GitHub (the package is not on the npm registry yet):
 
 ```bash
 npm install github:vadi2/fhir-document-viewer
 ```
 
-```js
-import "fhir-document-viewer";                       // defines <fhir-document-viewer>
-import { read, renderHtml } from "fhir-document-viewer"; // or use the functions
-```
+## What it shows
 
-## The three views
-
-| `view` | What it shows |
+| `view` | |
 |---|---|
-| `document` (default) | The patient, then every section of the document in its own order, each entry with its status, dates and details. |
-| `dashboard` | One card per clinical question: patient, alerts, the patient's own story, allergies, problems, current medication, care plans and who is responsible, results and how old they are, devices, procedures, vaccinations, plus which patient summary sections the document covers and technical checks on its entries. |
-| `timeline` | Every dated entry in one column: upcoming ones first (soonest on top), then newest to oldest under year headings, colour-coded by kind. |
+| `document` (default) | The patient, then every section in the document's own order. |
+| `dashboard` | One card per clinical question: alerts, allergies, problems, medication, care plans, results and their age, devices, procedures, vaccinations. |
+| `timeline` | Every dated entry in one column: upcoming first, then newest to oldest. |
 
 Two boxes are pinned above every view:
 
-- **Critical** - high-priority alerts (FHIR `Flag`), each followed by the care plan
-  that answers it with its steps and who is responsible; high-criticality allergies;
-  high-risk problems; anticoagulants and insulin with what dosing them needs (last dose,
-  renal function, weight) and whether the document has it.
-- **Missing and possibly outdated** - sections a reader would expect that are absent,
-  results too old to act on, a medication list that was never reconciled, cancelled
-  follow-ups, and other gaps, each with why it matters.
+- **Critical** - high-priority alerts (`Flag`) with the care plan that answers them,
+  high-criticality allergies, high-risk problems, anticoagulants and insulin.
+- **Missing and possibly outdated** - expected sections that are absent, results too old
+  to act on, an unreconciled medication list, cancelled follow-ups.
 
 ![The timeline view](docs/timeline.png)
 
 ## Document types
 
-The type is read off the Bundle (its profile, the Composition's LOINC type, or its
-content), never asked for.
+The type is read off the Bundle, never asked for.
 
-| Document | Recognised by | What the viewer does with it |
-|---|---|---|
-| **Patient summary** - IPS, HL7 Europe EPS, national IPS profiles | Composition type LOINC `60591-5`, or the EPS Bundle profile | The full treatment: all three views, the critical box, and the missing-and-outdated box checked against the sections a patient summary should have. This is what the viewer was built for. |
-| **Laboratory report** - HL7 Europe Laboratory | Composition type LOINC `11502-2`, or the EU laboratory Bundle profile | Results grouped under their section, sub-sections ("Blood examinations") kept as labels, each with value, unit, reference range, interpretation and performer. Timeline by result date. |
-| **Prescription and dispense** - HL7 Europe MPD | An entry claiming an MPD profile, or a `MedicationRequest` or `MedicationDispense` in a Bundle with no Composition | There is no Composition, so the entries are listed as they come, each medication with its dosage, status and dates. Anticoagulants and insulin still reach the critical box. |
-| **Imaging report** - HL7 Europe Imaging | The EU imaging Bundle profiles, or an `ImagingStudy` among the entries | Its sections with their narrative as written, and observations read as results. `ImagingStudy` and `DiagnosticReport` get no treatment of their own: they are listed by type and name, and no images are shown. |
-| **Hospital discharge report** - HL7 Europe HDR | Composition type LOINC `34105-7`, or the EU discharge report Bundle profiles | Read like a patient summary: its sections, with problems, medication, procedures and the plan of care in all three views. |
+| Document | Recognised by |
+|---|---|
+| **Patient summary** - IPS, HL7 Europe EPS, national IPS profiles | Composition type LOINC `60591-5`, or the EPS Bundle profile |
+| **Laboratory report** - HL7 Europe Laboratory | LOINC `11502-2`, or the EU laboratory Bundle profile |
+| **Prescription and dispense** - HL7 Europe MPD | An MPD entry profile, or a `MedicationRequest` / `MedicationDispense` with no Composition |
+| **Imaging report** - HL7 Europe Imaging | The EU imaging Bundle profiles, or an `ImagingStudy` entry (listed, no images shown) |
+| **Hospital discharge report** - HL7 Europe HDR | LOINC `34105-7`, or the EU discharge report Bundle profiles |
 
-Anything else that is a FHIR Bundle is shown as a patient summary would be: whatever
-Composition, sections and resources it has are rendered, and the rest is listed as
-missing. A Bundle with no Composition at all still shows its patient and its entries.
+Any other FHIR Bundle is shown as a patient summary would be. Sections are matched by
+LOINC code first and title second, so documents in any language work.
 
-Written against FHIR R4. Sections are matched by LOINC code first and by title second, so
-documents in any language work; the three examples are in Swedish.
-
-## Element reference
-
-**Attributes**
+## Reference
 
 | Attribute | Values | |
 |---|---|---|
 | `src` | URL | A Bundle to fetch and show. |
-| `view` | `document`, `dashboard`, `timeline` | Which view to open on. Changes when the reader uses the buttons. |
+| `view` | `document`, `dashboard`, `timeline` | The view to open on. |
 | `switcher` | `off` | Hide the view buttons. |
-| `caption` | text | A short note shown with the document type and date, for example where the document came from. |
-| `theme` | `light`, `dark` | Pin the colour scheme. Without it the viewer follows the page's `color-scheme`. |
-| `today` | `YYYY-MM-DD` | The day ages and "upcoming" are counted from when the document carries no date. Defaults to the current day. |
+| `caption` | text | A note shown with the document type and date. |
+| `theme` | `light`, `dark` | Pin the colour scheme; default follows the page. |
+| `today` | `YYYY-MM-DD` | The day ages are counted from when the document has no date. |
 
-**Properties** - `bundle` (JSON text, a parsed Bundle, or `null`), `view`, `caption`,
-and read-only `summary` (the view model) and `docType` (`eps`, `laboratory`, `mpd`,
-`imaging`, `hdr`).
+- **Properties:** `bundle`, `view`, `caption`, read-only `summary` and `docType`
+  (`eps`, `laboratory`, `mpd`, `imaging`, `hdr`).
+- **Events:** `render`, `error` (`detail.message`), `viewchange` (bubbles).
+- **Styling:** the viewer lives in a shadow root. Override `--fdv-font`,
+  `--fdv-font-size`, `--fdv-font-weight`, `--fdv-radius`, `--fdv-accent`, `--fdv-bg`,
+  `--fdv-text` and the other `--fdv-*` colours, or style `::part(frame)`.
 
-**Events** - `render` (`detail: { docType, summary, view }`), `error`
-(`detail: { message }`, for example "Not a FHIR Bundle in JSON"), `viewchange`
-(`detail: { view }`, bubbles).
-
-**Styling** - the viewer lives in a shadow root, so page styles do not leak in. Change
-its look with custom properties on the element or any ancestor:
-
-```css
-fhir-document-viewer {
-  --fdv-font: "Inter", sans-serif;   /* font family */
-  --fdv-font-size: 15px;             /* base size everything scales from */
-  --fdv-font-weight: 400;
-  --fdv-radius: 6px;
-  --fdv-accent: #0b5fff;
-  --fdv-frame: none;                 /* the border around the whole viewer */
-  --fdv-padding: 0;
-}
-```
-
-Colours: `--fdv-bg`, `--fdv-card`, `--fdv-text`, `--fdv-muted`, `--fdv-border`,
-`--fdv-field-border`, `--fdv-accent`, `--fdv-accent-soft`, `--fdv-btn`, `--fdv-btn-on`,
-`--fdv-pass`, `--fdv-pass-bg`, `--fdv-fail`, `--fdv-fail-bg`, `--fdv-warn`,
-`--fdv-warn-bg`, `--fdv-code-bg`. The outer frame is also exposed as `::part(frame)`.
-
-## JavaScript API
+The functions behind the element have no DOM dependency and run in Node 20+, Deno, Bun
+and workers:
 
 ```js
-import { read, renderHtml, renderStatic, summarize, detectDocumentType, parseJson, css }
-  from "https://cdn.jsdelivr.net/gh/vadi2/fhir-document-viewer@0.1.1/fhir-document-viewer.js";
+import { read, renderHtml, renderStatic } from "fhir-document-viewer";
 
-const doc = read(jsonText);            // { docType, summary } - throws TypeError if not a Bundle
-doc.summary.attention;                 // what is missing or possibly outdated
-doc.summary.sections;                  // every section with its entries, read into plain objects
-
-renderHtml(jsonText, { view: "timeline" });  // an HTML string, without the stylesheet
-renderStatic(jsonText, { view: "dashboard" }); // a whole element with a declarative
-                                               // shadow root: displays without any script
+read(jsonText);                                // { docType, summary }, throws if not a Bundle
+renderHtml(jsonText, { view: "timeline" });    // an HTML string, without the stylesheet
+renderStatic(jsonText, { view: "dashboard" }); // a whole element that displays without script
 ```
 
-The functions have no DOM dependency and run in Node 20+, Deno, Bun and workers, so the
-same module can pre-render on a server. Everything from the document is HTML-escaped
-before it is placed in the page.
-
-Give it the JSON **text** when you can: FHIR decimals carry their precision ("5.0" is not
-"5"), and only the text still has it. `parseJson` keeps it on every engine; a Bundle that
-was already parsed with `JSON.parse` shows "5.0" as "5".
+Prefer JSON text over a parsed object: only the text still says whether a decimal was
+written "5.0" or "5". Everything from the document is HTML-escaped.
 
 ## Limits
 
-- **A reading aid, not a medical device.** It is not certified for clinical use and
-  must not be the basis for a clinical decision. What it marks critical or missing is a
-  heuristic over what the document says.
-- **Not a validator.** It shows what is there, tolerates malformed input and says
-  nothing about conformance to a profile. Validate separately.
-- **No terminology server.** Codes are shown by the `display` and `text` the document
-  carries. Anticoagulants and insulin are recognised by ATC code only, and high-risk
-  problems by a short list of diagnosis names in English, Swedish, Danish, Norwegian
-  and German. A medicine coded only in a national system is not flagged.
-- **Interface text is English.** Document content is shown in whatever language it was
-  written in; the labels around it are not translated.
-- **JSON only**, FHIR R4. No XML, no STU3, no signature checking, no attachments
-  rendered (PDFs and images are listed, not shown).
-- **One document at a time.** It does not merge, compare or reconcile documents.
-- Needs a browser with custom elements and shadow DOM (anything from 2020). Dark mode
-  uses `light-dark()` (2024); older browsers get the light palette.
+- **A reading aid, not a medical device.** What it marks critical or missing is a
+  heuristic and must not be the basis for a clinical decision.
+- **Not a validator.** It tolerates malformed input and says nothing about conformance.
+- **No terminology server.** Anticoagulants and insulin are recognised by ATC code only,
+  high-risk problems by diagnosis names in English, Swedish, Danish, Norwegian and German.
+- **English interface.** Document content is shown in its own language.
+- **JSON and FHIR R4 only**, one document at a time. No XML, no signature checking, and
+  attachments are listed, not shown.
 
 ## Development
 
@@ -189,28 +119,15 @@ was already parsed with `JSON.parse` shows "5.0" as "5".
 node --test
 ```
 
-No install step: there are no dependencies. The tests render the three example
-documents and assert on what a reader must see (critical first, then missing and
-outdated, then the view; timeline order), compare the view model with Provbana's own
-output for nine documents (`test/golden/`), and replay 320 cases captured from
-Provbana's test suite, most of them malformed on purpose (`test/corpus/`).
-
-To look at it locally, serve the folder with any static server and open `index.html`:
-
-```bash
-python3 -m http.server 8000
-```
-
-Every patient in `samples/` and `test/` is synthetic. See
-[test/fixtures/README.md](test/fixtures/README.md) for where each file comes from.
+No install step. The tests render the three example documents, compare the view model
+with Provbana's own output and replay 320 cases from Provbana's test suite. Every patient
+in `samples/` and `test/` is synthetic, see
+[test/fixtures/README.md](test/fixtures/README.md).
 
 ## Credit
 
 This is the clinical view of [Provbana](https://github.com/vadi2/Provbana), an open
-source platform for FHIR document tracks at hackathons and connectathons, first used at
-the European Patient Summary track of the Nordic Hackathon 2026. The view was written
-there, where it renders every submitted document; this repository is the same view as
-a component of its own. The three example patients (Andrea, Arne and Ville) are
-Provbana's scenario documents.
+source platform for FHIR document tracks at hackathons, first used at the European
+Patient Summary track of the Nordic Hackathon 2026.
 
 [MIT](LICENSE)
